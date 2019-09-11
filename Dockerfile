@@ -5,7 +5,8 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && DEBIAN_FRONTEND='noninteractive' apt-get install -y \
                build-essential \
-               libhdf5-serial-dev
+               libhdf5-serial-dev \
+               libcairo2-dev
 
 # Establish an R-worthy environment
 RUN conda install -c conda-forge r-base=3.6.1 \
@@ -39,5 +40,6 @@ RUN mkdir .local \
     && mkdir /work
 
 WORKDIR /work
+
 
 CMD ["jupyter","lab","--ip=0.0.0.0","--port=8888","--allow-root"]
